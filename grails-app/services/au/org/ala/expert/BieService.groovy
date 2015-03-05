@@ -64,16 +64,22 @@ class BieService {
     def doBulkLookup(guids) {
         println (guids as JSON).toString()
         def data = webService.doJsonPost(grailsApplication.config.bie.services.baseURL,
-                "species/guids/bulklookup.json", "", (guids as JSON).toString())
+                "ws/species/guids/bulklookup.json", "", (guids as JSON).toString())
+
+        println "Data:"
+        println data
+
         Map results = [:]
         data.searchDTOList.each {item ->
-            results.put item.guid, [
-                    common: item.commonNameSingle,
-                    image: [largeImageUrl: item.largeImageUrl,
-                            smallImageUrl: item.smallImageUrl,
-                            thumbnailUrl: item.thumbnailUrl,
-                            imageMetadataUrl: item.imageMetadataUrl,
-                            imageSource: item.imageSource]]
+            if((item != null) && (item.guid != null)) {
+                results.put item.guid, [
+                        common: item.commonNameSingle,
+                        image: [largeImageUrl: item.largeImageUrl,
+                                smallImageUrl: item.smallImageUrl,
+                                thumbnailUrl: item.thumbnailUrl,
+                                imageMetadataUrl: item.imageMetadataUrl,
+                                imageSource: item.imageSource]]
+            }
         }
         return results
     }

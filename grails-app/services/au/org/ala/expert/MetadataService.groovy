@@ -40,6 +40,7 @@ class MetadataService {
         }
 
         def wkt = webService.get("http://spatial.ala.org.au/ws/shape/wkt/${pid}")
+        //def wkt = webService.get("http://localhost:8082/ws/shape/wkt/100022")
 
         imcraWktCache.put pid, wkt
         log.debug wkt

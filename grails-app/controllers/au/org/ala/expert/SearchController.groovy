@@ -124,6 +124,8 @@ class SearchController {
                 log.debug searchResults.error
             }
 
+            println("Search results size: " + searchResults.size())
+
             // add the family metadata (image, common name, etc)
             /*startTime = System.currentTimeMillis();
             log.debug "timing----- 0"*/
@@ -238,9 +240,8 @@ class SearchController {
 
         def http = new HTTPBuilder(grailsApplication.config.results.cache.baseUrl + '/')
         http.request( groovyx.net.http.Method.POST, groovyx.net.http.ContentType.JSON) {
-            //Modified by Alan on for fetching multiple layers on 30/07/2014 --- START
-
             /*
+            //Modified by Alan on for fetching multiple layers on 30/07/2014 --- START
             uri.path = 'submit'
 
             def bodyMap = [ list: list, queryDescription: queryDescription, query: list.query]
@@ -254,13 +255,16 @@ class SearchController {
 
             body = stream
             requestContentType = ContentType.URLENC
-            */
             //Modified by Alan --- END
+            */
 
+            ///*
             uri.path = 'submit'
+            println(list.query)
             body = [ list: list, queryDescription: queryDescription, query: list.query]
             if (key) {body.key = key}
             requestContentType = ContentType.URLENC
+            //*/
 
             response.success = { resp, json ->
                 return json.key

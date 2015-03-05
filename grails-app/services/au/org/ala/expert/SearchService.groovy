@@ -64,6 +64,7 @@ class SearchService {
 
         def results = []
         def query = buildQuery(cmd)
+        //def query = ''
 
         log.debug "Query = " + query
 
@@ -73,7 +74,7 @@ class SearchService {
         }
 
         try {
-            withHttp(uri: grailsApplication.config.spatial.baseURL) {
+            withHttp(uri: grailsApplication.config.spatial.layers.service.url) {
                 def json = post(path: servicePath, body: query)
                 //println json
                 json.each {

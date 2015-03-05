@@ -74,7 +74,7 @@ if (!spatial.wms.cache.url) {
     spatial.wms.cache.url = spatial.baseURL + "/geoserver/gwc/service/wms?"
 }
 if (!spatial.layers.service.url) {
-    spatial.layers.service.url = spatial.baseURL + "/layers-service"
+    spatial.layers.service.url = spatial.baseURL + "/ws"
 }
 if (!headerAndFooter.baseURL) {
     headerAndFooter.baseURL = /*"http://localhost/~markew/commonui"//*/"http://www2.ala.org.au/commonui"
@@ -83,6 +83,7 @@ if (!headerAndFooter.baseURL) {
 /******************************************************************************\
  *  APP CONFIG
  \******************************************************************************/
+//distribution.maps.dataResourceUid = 'dr2099'
 distribution.maps.dataResourceUid = 'dr803'
 image.source.dataResourceUid = 'dr660'
 
@@ -152,31 +153,30 @@ environments {
         }
     }
     development {
-        grails.host = "localhost"
+        grails.host = "152.83.206.10"
         //grails.host = "woodfired.ala.org.au"
         grails.serverURL = "http://${grails.host}:8080/${appName}"
 
-        //results.cache.baseUrl = grails.serverURL + "/results"
+        results.cache.baseUrl = grails.serverURL + "/results"
         //results.cache.baseUrl = "http://fish.ala.org.au/results"
         //explorer.baseUrl = "http://taxaexp.ala.org.au"
 
 
-        results.cache.baseUrl = grails.serverURL + "/results"
-        explorer.baseUrl = "http://${grails.host}:8082/tviewer"
+        //results.cache.baseUrl = grails.serverURL + "/results"
+
+        //explorer.baseUrl = "http://taxaexp.ala.org.au"
+        //explorer.baseUrl = "http://${grails.host}:8082/tviewer"
+        explorer.baseUrl = "http://${grails.host}:8090/tviewer"
         //results.cache.baseUrl = "http://130.56.248.132/results"
         //explorer.baseUrl = "http://130.56.248.132/tviewer"
     }
     test {
+//        grails.host = "spatial-dev.ala.org.au"
+//        grails.serverURL = "http://${grails.host}/expert"
+//        results.cache.baseUrl = grails.serverURL + "/results"
+//        explorer.baseUrl = "http://${grails.host}/tviewer"
         grails.host = "130.56.248.132"
-
-        grails.serverURL = "http://130.56.248.132/expert"
-
-        //results.cache.baseUrl = "http://fish.ala.org.au/results"
-        //explorer.baseUrl = "http://taxaexp.ala.org.au"
-
-        //grails.host = "ala-testweb1.vm.csiro.au"
-        //grails.serverURL = "http://${grails.host}/${appName}"
-
+        grails.serverURL = "http://${grails.host}/expert"
         results.cache.baseUrl = grails.serverURL + "/results"
         explorer.baseUrl = "http://${grails.host}/tviewer"
     }
@@ -201,10 +201,10 @@ log4j = {
             production {
                 rollingFile name: "expert",
                     maxFileSize: 104857600,
-                    file: "${logDirectory}/${appName}.log",
+                    file: "${logDirectory}/expert.log",
                     threshold: org.apache.log4j.Level.WARN,
                     layout: pattern(conversionPattern: "%d [%c{1}]  %m%n")
-                rollingFile name: "stacktrace", maxFileSize: 1024, file: "${logDirectory}/${appName}-stacktrace.log"
+                rollingFile name: "stacktrace", maxFileSize: 1024, file: "${logDirectory}/expert-stacktrace.log"
             }
             development{
                 console name: "stdout", layout: pattern(conversionPattern: "%d [%c{1}]  %m%n"), threshold: org.apache.log4j.Level.DEBUG

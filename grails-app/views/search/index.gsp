@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search | FishMap | Atlas of Living Australia</title>
+    <title>Search | Atlas of Living Australia</title>
     <meta name="layout" content="ala2"/>
     <link rel="stylesheet" type="text/css" media="screen" href="${resource(dir:'css',file:'expert.css')}" />
     <link rel="stylesheet" href="${resource(dir:'css/smoothness',file:'jquery-ui-1.8.19.custom.css')}" type="text/css" media="screen"/>
@@ -14,7 +14,7 @@
 <header id="page-header">
     <div class="inner">
         <hgroup>
-            <h1 title="fishmap - find Australian marine fishes"></h1>
+            <h1 title="Species of National Environmental Significance"></h1>
         </hgroup>
         <nav id="breadcrumb"><ol><li class="last">Search</li></ol></nav>
     </div>
